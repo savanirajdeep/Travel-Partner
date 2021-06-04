@@ -29,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('./public'));
 function isLoggedIn(req, res, next) {
-    req.user ? next() : res.sendStatus(401);
+    req.user ? next() : res.redirect('/auth/google');
 }
 const alienRouter = require('./routers/ride')
 app.use('/ride',isLoggedIn,alienRouter);
@@ -43,9 +43,9 @@ app.get('/DashBoard',isLoggedIn,(req,res)=>{
 app.get('/auth/failure', (req, res) => {
     res.send('Failed to authenticate..');
 });
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '/public/index.html');
-// });
+app.get('/haveRide',isLoggedIn, (req, res) => {
+    res.sendFile(__dirname + '/public/HaveRide.html');
+});
 app.get('/logout', (req, res) => {
     req.logout();
     req.session.destroy();
