@@ -34,7 +34,8 @@ app.use(express.static('./public'));
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.sendStatus(401);
 }
-
+const alienRouter = require('./routers/addRide')
+app.use('/HaveRide',isLoggedIn,alienRouter);
 
 
 app.get('/auth/google',
