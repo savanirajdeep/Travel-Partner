@@ -2,7 +2,7 @@ const express=require('express')
 const Rider=require('../models/rider')
 const router=express.Router();
 
-router.get('/',async(req,res)=>{
+router.get('/getRide',async(req,res)=>{
     try{
         const aliens=await Rider.find()
         res.json(aliens)
@@ -10,6 +10,9 @@ router.get('/',async(req,res)=>{
         res.send('Error '+err)
     }
 })
+router.get('/haveRide',(req,res)=>{
+    res.sendFile('../public/HaveRide.html');
+});
 // router.get('/:id',async(req,res)=>{
 //     try{
 //         const aliens=await Rider.findById(req.params.id)
