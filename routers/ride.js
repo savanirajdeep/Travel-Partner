@@ -22,7 +22,6 @@ router.get('/getRide',async(req,res)=>{
 //     }
 // })
 router.post('/addRide',async(req,res)=>{
-    console.log(JSON.stringify(req.body));
     const rider=new Rider({
         name:req.user.displayName,
         phone:req.body.phone,
@@ -37,7 +36,7 @@ router.post('/addRide',async(req,res)=>{
     })
     try{
         const a1=await rider.save()
-        res.json(a1)
+        res.redirect('/home');
     }catch(err){
         res.send('Error '+err)
     }
