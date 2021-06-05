@@ -6,12 +6,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Travel Partner | Home</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/getName",
+                type: 'GET',
+                success: function (res) {
+                    $("#userName").html("<strong>" + res + "</strong>");
+                }
+            });
+        });
+    </script>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <!-- <link rel="stylesheet" href="assets/css/ionicons.min.css" /> -->
-    <!-- <link rel="stylesheet" href="assets/css/owl.carousel.css" /> -->
-    <!-- <link rel="stylesheet" href="assets/css/owl.theme.css" /> -->
-    <!-- <link rel="stylesheet" href="assets/css/flexslider.css" type="text/css" /> -->
     <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
@@ -19,13 +26,15 @@
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #d2edfd">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-                <a class="navbar-brand" href="home" title="HOME" style="margin-left: 25px">Travel <span>Partner</span></a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="home" title="HOME" style="margin-left: 25px">Travel
+                    <span>Partner</span></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right: 40px">
@@ -48,12 +57,12 @@
                         <div class="inner-intro">
                             <div class="container-fluid">
                                 <div class="header-title">
-                                    <h1>Hello User, Welcome !</h1>
+                                    <h2>Hello <h2 id="userName"></h2> Welcome !</h2>
                                 </div>
                             </div>
-                            <h1 class="header-title">
+                            <h2 class="header-title">
                                 <span>traveling</span> always "good idea"
-                            </h1>
+                            </h2    >
                             <p class="header-sub-title">
                                 PLEASE SELECT THE SERVICE YOU REQUIRE :
                             </p>

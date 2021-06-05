@@ -1,28 +1,22 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 const session=require('express-session');
 const passport = require('passport');
 require('./routers/auth');
-const mongoDBSession=require('connect-mongodb-session')(session);
 const mongoose = require('mongoose');
 const mongoURL = 'mongodb://localhost/carpool';
-const path=require('path');
 mongoose.connect(mongoURL, { useNewUrlParser: true }).then((res)=>{
     console.log('Database Connected');
 });
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.sendStatus(401);
 }
-const store = new mongoDBSession({
-    uri:mongoURL,
-    collection:"sessions"
-});
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(session({
     secret:"its scret",
     saveUninitialized:false,
-    store:store,
     resave:false
 }))
 app.use(passport.initialize());
@@ -52,6 +46,9 @@ app.get('/auth/failure', (req, res) => {
 });
 app.get('/haveRide',isLoggedIn, (req, res) => {
     res.sendFile(__dirname + '/public/HaveRide.html');
+});
+app.get('/getName', (req, res) => {
+    res.send(req.user.displayName);
 });
 app.get('/logout', (req, res) => {
     req.logout();
