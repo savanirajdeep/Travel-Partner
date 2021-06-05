@@ -4,7 +4,7 @@
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var jsonData = '[]';
             $.ajax({
                 url: '/ride/getRide',
@@ -12,13 +12,13 @@
                 data: {
                     json: jsonData
                 },
-                success: function (response) {
+                success: function(response) {
                     var trHTML = '';
                     $('#records_table').html('');
-                    trHTML += '<tr><th>Vehicle Type </th><th>Vehicle Number </th><th>Vacancy </th><th>Start </th><th>Destination </th><th>Departure </th><th>Arrival</th></tr>';
-                    $.each(response, function (i, item) {
+                    trHTML += '<tr><th>Vehicle Type </th><th>Vehicle Number </th><th>Vacancy </th><th>Start Place</th><th>Destination </th><th>Departure Time</th><th>Arrival Time</th><th>Phone Number</th><th>Fare per Seat</th></tr>';
+                    $.each(response, function(i, item) {
                         $('#test').text(JSON.stringify(item));
-                        trHTML += '<tr><td>' + item.vtype + '</td><td>' + item.vacancy + '</td><td>' + item.start + '</td></tr>'+ item.dest + '</td></tr>' + item.departTime +'</td></tr>'+ item.arrivalTime + '</td></tr>';
+                        trHTML += '<tr><td>' + item.vtype + '</td><td>' + item.vnum + '</td><td>' + item.vacancy + '</td><td>' + item.start + '</td><td>' + item.dest + '</td><td>' + item.departTime + '</td><td>' + item.arrivalTime + '</td><td>' + item.phone + '</td><td>' + item.fare + '</td></tr>';
                     });
                     $('#records_table').append(trHTML);
                 }
@@ -28,19 +28,25 @@
     <style type="text/css">
         .table {
             width: 100%;
-            padding: 30px;
+            padding: 20px;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
             background: #7fdfff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 18px;
             border-radius: 10px;
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
-            color: skyblue;
+            color: black;
             /* table-align: center; */
             border: 1px solid #257c9e;
         }
-
+        
+        .table th {
+            text-align: center;
+        }
+        
         .form-style-10 {
             width: 450px;
             padding: 30px;
@@ -51,18 +57,18 @@
             -moz-border-radius: 10px;
             color: blue;
         }
-
+        
         .form-style-10 .inner-wrap {
             padding: 30px;
             background: #f8f8f8;
             border-radius: 6px;
             margin-bottom: 15px;
         }
-
+        
         .text-center {
             text-align: center;
         }
-
+        
         .form-style-10 h1 {
             background: #58d5ff;
             padding: 30px 30px 10px 30px;
@@ -72,20 +78,20 @@
             font: normal 30px "Bitter", serif;
             border: 1px solid #257c9e;
         }
-
+        
         .form-style-10 h1>span {
             display: block;
             margin-top: 2px;
             font: 13px Arial, Helvetica, sans-serif;
         }
-
+        
         .form-style-10 label {
             display: block;
             font: 13px Arial, Helvetica, sans-serif;
             color: #888;
             margin-bottom: 15px;
         }
-
+        
         .form-style-10 input[type="text"],
         .form-style-10 input[type="date"],
         .form-style-10 input[type="datetime"],
@@ -109,14 +115,14 @@
             border: 2px solid #fff;
             box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
         }
-
+        
         .form-style-10 .section {
             font: normal 20px "Bitter", serif;
             color: #2a88ad;
             margin-bottom: 5px;
             text-align: center;
         }
-
+        
         .form-style-10 .section span {
             background: #2a88ad;
             padding: 5px 10px 5px 10px;
@@ -130,7 +136,7 @@
             color: #fff;
             margin-top: -3px;
         }
-
+        
         .form-style-10 input[type="button"],
         .form-style-10 input[type="submit"] {
             background: #2a88ad;
@@ -144,23 +150,23 @@
             border: 1px solid #257c9e;
             font-size: 15px;
         }
-
+        
         .form-style-10 input[type="button"]:hover,
         .form-style-10 input[type="submit"]:hover {
             background: #2a6881;
         }
-
+        
         .form-style-10 .privacy-policy {
             padding-left: 20px;
             width: 250px;
             font: 12px Helvetica;
             margin-top: 10px;
         }
-
+        
         h1 {
             text-align: center;
         }
-
+        
         .button {
             border: none;
             color: white;
@@ -173,36 +179,36 @@
             transition-duration: 0.4s;
             cursor: pointer;
         }
-
+        
         .button1 {
             background-color: white;
             color: black;
             border: 2px solid #4caf50;
         }
-
+        
         .button1:hover {
             background-color: #4caf50;
             color: white;
         }
-
+        
         .button2 {
             background-color: white;
             color: black;
             border: 2px solid #008cba;
         }
-
+        
         .button2:hover {
             background-color: #008cba;
             color: white;
         }
-
+        
         body {
             background-image: url('assets/header.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
         }
-
+        
         .inner-wrap {
             margin-top: 20px;
         }
@@ -221,8 +227,7 @@
         <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #d2edfd">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -352,7 +357,7 @@
                 <option value="Patiala"> Patiala </option>
                 <option value="Pondicherry"> Pondicherry </option>
             </select>
-            
+
         </div>
 
         <div class="section"><span>2</span>Expected Duration</div>
@@ -387,9 +392,9 @@
                 <th>Destination </th>
                 <th>Departure </th>
                 <th>Arrival</th>
-
+                <th>Phone Number</th>
             </tr>
-            <tr>
+            <!-- <tr>
                 <th>Car </th>
                 <th>AB 07 CD 1234 </th>
                 <th>2 </th>
@@ -433,7 +438,7 @@
                 <th>Chennai </th>
                 <th>18:00 PM </th>
                 <th>20:00PM</th>
-            </tr>
+            </tr> -->
 
 
 
