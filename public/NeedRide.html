@@ -17,7 +17,7 @@
                     $('#records_table').html('');
                     trHTML += '<tr><th>Vehicle Type </th><th>Vehicle Number </th><th>Vacancy </th><th>Start Place</th><th>Destination </th><th>Departure Time</th><th>Arrival Time</th><th>Phone Number</th><th>Fare per Seat</th></tr>';
                     $.each(response, function(i, item) {
-                        $('#test').text(JSON.stringify(item));
+                        //$('#test').text(JSON.stringify(item));
                         trHTML += '<tr><td>' + item.vtype + '</td><td>' + item.vnum + '</td><td>' + item.vacancy + '</td><td>' + item.start + '</td><td>' + item.dest + '</td><td>' + item.departTime + '</td><td>' + item.arrivalTime + '</td><td>' + item.phone + '</td><td>' + item.fare + '</td></tr>';
                     });
                     $('#records_table').append(trHTML);
@@ -40,7 +40,7 @@
             -moz-border-radius: 10px;
             color: black;
             /* table-align: center; */
-            border: 1px solid #257c9e;
+            border: 2px solid #257c9e;
         }
         
         .table th {
@@ -381,67 +381,10 @@
         </div>
         </form>
     </div>
-    <h1 id="test"></h1>
+
     <div class="table">
+        <h1 id="test" style="margin-bottom: 20px; color:white">Rides for You</h1>
         <table class="table" id="records_table">
-            <tr>
-                <th>Vehicle Type </th>
-                <th>Vehicle Number </th>
-                <th>Vacancy </th>
-                <th>Start </th>
-                <th>Destination </th>
-                <th>Departure </th>
-                <th>Arrival</th>
-                <th>Phone Number</th>
-            </tr>
-            <!-- <tr>
-                <th>Car </th>
-                <th>AB 07 CD 1234 </th>
-                <th>2 </th>
-                <th>Vellore </th>
-                <th>Chennai </th>
-                <th>18:00 PM </th>
-                <th>20:00PM</th>
-            </tr>
-            <tr>
-                <th>Car </th>
-                <th>AB 07 CD 1234 </th>
-                <th>2 </th>
-                <th>Vellore </th>
-                <th>Chennai </th>
-                <th>18:00 PM </th>
-                <th>20:00PM</th>
-            </tr>
-            <tr>
-                <th>Car </th>
-                <th>AB 07 CD 1234 </th>
-                <th>2 </th>
-                <th>Vellore </th>
-                <th>Chennai </th>
-                <th>18:00 PM </th>
-                <th>20:00PM</th>
-            </tr>
-            <tr>
-                <th>Car </th>
-                <th>AB 07 CD 1234 </th>
-                <th>2 </th>
-                <th>Vellore </th>
-                <th>Chennai </th>
-                <th>18:00 PM </th>
-                <th>20:00PM</th>
-            </tr>
-            <tr>
-                <th>Car </th>
-                <th>AB 07 CD 1234 </th>
-                <th>2 </th>
-                <th>Vellore </th>
-                <th>Chennai </th>
-                <th>18:00 PM </th>
-                <th>20:00PM</th>
-            </tr> -->
-
-
-
         </table>
 </body>
 
