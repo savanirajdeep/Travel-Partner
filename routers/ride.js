@@ -10,9 +10,9 @@ router.get('/getRide',async(req,res)=>{
         res.send('Error '+err)
     }
 })
-router.get('/haveRide',(req,res)=>{
-    res.sendFile('../public/HaveRide.html');
-});
+// router.get('/',(req,res)=>{
+//     res.send
+// });
 // router.get('/:id',async(req,res)=>{
 //     try{
 //         const aliens=await Rider.findById(req.params.id)

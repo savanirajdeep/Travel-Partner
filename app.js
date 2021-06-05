@@ -31,10 +31,17 @@ app.use(express.static('./public'));
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.redirect('/auth/google');
 }
-const alienRouter = require('./routers/ride')
-app.use('/ride',isLoggedIn,alienRouter);
-
-
+function home(req, res, next) {
+    req.user ? next() : res.sendFile(__dirname + '/public/home.html');;
+}
+const rideRouter = require('./routers/ride')
+app.use('/ride',isLoggedIn,rideRouter);
+app.get('/',home,(req,res)=>{
+    res.redirect('DashBoard');
+});
+app.get('/home',home,(req,res)=>{
+    res.redirect('DashBoard');
+});
 app.get('/auth/google',
     passport.authenticate('google', { scope: ['email', 'profile'] }));
 app.get('/DashBoard',isLoggedIn,(req,res)=>{
