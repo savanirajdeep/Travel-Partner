@@ -3,6 +3,25 @@
 <head>
     <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 
+    <script>
+        var jsonData = '[]';
+
+        $.ajax({
+            url: '/echo/json/',
+            type: 'POST',
+            data: {
+                json: jsonData
+            },
+            success: function(response) {
+                var trHTML = '';
+                $.each(response, function(i, item) {
+                    trHTML += '<tr><td>' + item.VehicleType + '</td><td>' + item.Vacancy + '</td><td>' + item.Start + '</td></tr>' + item.Destination + '</td></tr>' + item.Departure + '</td></tr>' + item.Arrival + '</td></tr>';
+                });
+                $('#records_table').append(trHTML);
+            }
+        });
+    </script>
+
     <style type="text/css">
         .form-style-10 {
             width: 450px;
@@ -207,12 +226,8 @@
     <div class="form-style-10">
         <h1>ENTER YOUR TRIP DETAILS<span></span></h1>
         <form method="POST"></form>
-        <div class="section"><span>1</span>Contact Details</div>
-        <div class="inner-wrap">
-            <label>Phone Number *<input type="number" name="field4" pattern="[1-9]{1}[0-9]{9}" required/></label>
-        </div>
 
-        <div class="section"><span>2</span>Trip Locations</div>
+        <div class="section"><span>1</span>Trip Locations</div>
         <div class="inner-wrap" style="color: darkgrey;">
             <label>Start place *</label >
             <select>  
@@ -320,7 +335,7 @@
             <label>Needed Seats *<input type="number" name="field7" min="1" max="7" placeholder="Enter between 1 to 7" required/></label>
         </div>
 
-        <div class="section"><span>3</span>Expected Duration</div>
+        <div class="section"><span></span>Expected Duration</div>
         <div class="inner-wrap">
             <form action="">
                 <label for="birthdaytime">Departure time (Date and Time): *</label>
@@ -340,6 +355,20 @@
             <button class="button button2" type="submit">Search for Vehicle</button>
         </div>
         </form>
+    </div>
+    <div class="inner-wrap">
+        <table id="records_table" border='1'>
+            <tr>
+                <th>Vehicle Type</th>
+                <th>Vehicle Number</th>
+                <th>Vacancy</th>
+                <th>Start</th>
+                <th>Destination</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+
+            </tr>
+        </table>
     </div>
 </body>
 
